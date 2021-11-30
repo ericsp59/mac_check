@@ -5,7 +5,7 @@ function App() {
     <div className="App">
       <header className="App-header">
         <h1>
-          Hello 
+          MAC_CHECK 
         </h1>
         <input className="mac-check_input" />
         <button className='mac-check_btn'>check</button>
