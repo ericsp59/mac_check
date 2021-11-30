@@ -1,5 +1,5 @@
 FROM node:13 as node
-WORKDIR /react-app
+WORKDIR .
 COPY ./react-app/package.json ./package.json
 RUN npm install
 COPY . ../../
