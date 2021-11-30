@@ -2,7 +2,7 @@ FROM node:13 as node
 WORKDIR /react-app
 COPY ./react-app/package.json ./package.json
 RUN npm install
-COPY . ../../
+COPY ./react-app ../../
 RUN npm run build --prod
 
 FROM nginx:1.13
