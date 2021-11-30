@@ -5,7 +5,7 @@ services:
     build:
       context: .
       dockerfile: ./react-app/Dockerfile
-      restart: always
+    restart: always
     networks:
       - myNetwork
     ports:
