@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import './App.css';
 
 function App() {
@@ -8,6 +7,8 @@ function App() {
         <h1>
           Hello 
         </h1>
+        <input className="mac-check_input" />
+        <button className='mac-check_btn'>check</button>
       </header>
     </div>
   );

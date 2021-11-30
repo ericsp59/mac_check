@@ -4,7 +4,7 @@ from telnetlib import Telnet
 import cryptocode
 import sys
 
-f = open('text.txt', 'r')
+f = open('py_script/text.txt', 'r')
 [h, k] = [line.strip() for line in f]
 
 user = 'admin'
