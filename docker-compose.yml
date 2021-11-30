@@ -7,6 +7,10 @@ services:
       dockerfile: ./react-app/Dockerfile
     restart: always
     networks:
-      - myNetwork
+      - mack-check-Network
     ports:
       - "80:80"
+
+networks:
+  mack-check-Network:
+    driver: bridge      
