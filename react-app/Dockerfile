@@ -1,11 +1,12 @@
 FROM node:13 as node
-WORKDIR .
-COPY ./react-app/package.json ./package.json
+WORKDIR /react-app
+COPY /package.json ./package.json
 RUN npm install
 COPY . ../../
 RUN npm run build --prod
 
 FROM nginx:1.13
+WORKDIR /re
 COPY --from=node ./react-app/build/ /usr/share/nginx/html
 COPY ./react-app/nginx.conf /etc/nginx/conf.d/default.conf
 
