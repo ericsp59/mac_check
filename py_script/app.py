@@ -33,6 +33,7 @@ def get_mac():
   target_mac = ''
 
   def find_port_by_mac_zyxel(host, mac, sw_ports):
+    msg = ''
     if not (re.match("[0-9a-f]{2}([-:]?)[0-9a-f]{2}(\\1[0-9a-f]{2}){4}$", mac.lower().strip())):
       return('error format mac-address')
     else:
@@ -56,12 +57,13 @@ def get_mac():
           port = mactable_item[0]
           vid = mactable_item[1]
           if port not in sw_ports:
-            print('')
-            print(f'Switch: https://{host}')
+            msg += '\n'
+            msg += 'Switch: https://'+host
             for mactable_item2 in mactable_list:
               if mactable_item2[0] == port:
-                print (f'PORT {port}: {mactable_item2[2]}, VLAN: {mactable_item2[1]}')
+                msg += 'PORT '+port+' : '+mactable_item2[2]+' ,  VLAN: '+mactable_item2[1]
                 tn.close()
+                return msg
           return [port, vid, mac, host]
         tn.close()
 
