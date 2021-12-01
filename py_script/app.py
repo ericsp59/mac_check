@@ -129,7 +129,7 @@ def get_mac():
 
   # while(True):
   # target_mac = input("Enter MAC: ")
-  target_mac = '1c:1b:b5:e9:04:bc'
+  target_mac = '00:23:63:83:68:0f'
   
   if target_mac != '':
     if not (re.match("[0-9a-f]{2}([-:]?)[0-9a-f]{2}(\\1[0-9a-f]{2}){4}$", target_mac.lower().strip())):
@@ -156,6 +156,7 @@ def get_mac():
       
       if on_zyxel200[0] == '4':
         on_dlink21 = find_port_by_mac_dlink('192.168.254.21', target_mac, [])
+        return msg+on_dlink21[4]
       
       if on_zyxel200[0] == '5':
         msg += on_zyxel200[2]+ '\n Web Interface Only --> http://192.168.254.22/'
@@ -164,15 +165,17 @@ def get_mac():
       if on_zyxel200[0] == '11':
         msg += 'Check 254.8...\n'
         on_zyxel8 = find_port_by_mac_zyxel('192.168.254.8', target_mac, [])
-
+        return msg+on_zyxel8[4]
       
       if on_zyxel200[0] == '25':
         msg += 'Check 254.35...\n'
         on_zyxel35 = find_port_by_mac_zyxel('192.168.254.35', target_mac, [])
+        return msg+on_zyxel35[4]
       
       if on_zyxel200[0] == '26':
         msg += 'Check 254.46...\n'
-        on_zyxel35 = find_port_by_mac_zyxel('192.168.254.46', target_mac, [])
+        on_zyxel46 = find_port_by_mac_zyxel('192.168.254.46', target_mac, [])
+        return msg+on_zyxel46[4]
       ###################################################
       if on_zyxel200[0] == '29':
         msg += 'Check 254.31...\n'
@@ -186,7 +189,7 @@ def get_mac():
             if on_zyxel33[0] == '27':
               msg += 'Check 254.34...\n'
               on_zyxel34 = find_port_by_mac_zyxel('192.168.254.34', target_mac, ['27'])
-              return on_zyxel34[4]
+              return msg+on_zyxel34[4]
             else: return msg+on_zyxel33[4]  
           else: return msg+on_zyxel32[4]
         else: return msg+on_zyxel31[4]  
@@ -207,6 +210,7 @@ def get_mac():
               if on_zyxel44[0] == '27':
                 msg += 'Check 254.45...\n'
                 on_zyxel45 = find_port_by_mac_zyxel('192.168.254.45', target_mac, [])
+
 
       msg += '\n######################################################\n'
       msg += '######################################################\n'
