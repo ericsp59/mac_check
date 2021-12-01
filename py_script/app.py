@@ -66,8 +66,8 @@ def get_mac():
                 msg += 'PORT '+port+', MAC: '+mactable_item2[2]+', VLAN: '+mactable_item2[1]
                 tn.close()
                 print(msg)
-                return msg
-          return [port, vid, mac, host]
+                # return msg
+          return [port, vid, mac, host, msg]
         tn.close()
 
           ##  # 0 - port
@@ -185,6 +185,7 @@ def get_mac():
             if on_zyxel33[0] == '27':
               msg += 'Check 254.34...\n'
               on_zyxel34 = find_port_by_mac_zyxel('192.168.254.34', target_mac, ['27'])
+          else: return on_zyxel32[4]    
       
       if on_zyxel200[0] == '30':
         msg += 'Check 254.41...\n'
