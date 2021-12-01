@@ -5,6 +5,6 @@ COPY ./py_script/main.py ./py_script/requirements.txt ./py_script/index.py ./py_
 #RUN pip install --upgrade pip
 # RUN apt-get update -y && apt-get install libsasl2-dev python-dev libldap2-dev libssl-dev libsnmp-dev
 RUN pip install -r requirements.txt
-RUN python index.py
+CMD [ "python3", "-m" , "flask", "run", "--host=0.0.0.0"]
 
-# EXPOSE 8080
+EXPOSE 8080
