@@ -25,8 +25,8 @@ app = Flask(__name__)
 # check_ping()
 
 def get_mac():
-  f = open('./py_script/text.txt', 'r')
-  f = open('./text.txt', 'r')
+  # f = open('./py_script/text.txt', 'r')
+  f = open('text.txt', 'r')
   [h, k] = [line.strip() for line in f]
 
   user = 'admin'
