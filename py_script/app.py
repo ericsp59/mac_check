@@ -4,7 +4,7 @@ import time
 from telnetlib import Telnet
 import cryptocode
 import os
-import json
+from flask import jsonify
 
 app = Flask(__name__)
 @app.route('/')
@@ -25,6 +25,7 @@ app = Flask(__name__)
 
 # check_ping()
 
+
 def get_mac():
   # f = open('./py_script/text.txt', 'r')
   f = open('text.txt', 'r')
@@ -35,6 +36,7 @@ def get_mac():
 
   target_mac = ''
   msg = ''
+  res = ''
   def find_port_by_mac_zyxel(host, mac, sw_ports):
     
     if not (re.match("[0-9a-f]{2}([-:]?)[0-9a-f]{2}(\\1[0-9a-f]{2}){4}$", mac.lower().strip())):
@@ -76,10 +78,9 @@ def get_mac():
           ##  # 2 - mac
           ##  # 3 - type
 
-
   def find_port_by_mac_dlink(host, mac, sw_ports):
     if not (re.match("[0-9a-f]{2}([-:]?)[0-9a-f]{2}(\\1[0-9a-f]{2}){4}$", mac.lower().strip())):
-      return('error format mac-address')
+      return ('error format mac-address')
       time.sleep(5000)
     else:
       msg1 = ''
@@ -128,11 +129,11 @@ def get_mac():
 
   # while(True):
   # target_mac = input("Enter MAC: ")
-  target_mac = ' 4C-52-62-15-BD-CD'
+  target_mac = '	04:0e:3c:ec:59:8c'
   
   if target_mac != '':
     if not (re.match("[0-9a-f]{2}([-:]?)[0-9a-f]{2}(\\1[0-9a-f]{2}){4}$", target_mac.lower().strip())):
-      return('error format mac-address')
+      return ('error format mac-address')
       print('\n\n')
     else:
       target_mac = target_mac.lower()
@@ -192,7 +193,7 @@ def get_mac():
             else: return msg+on_zyxel33[4]  
           else: return msg+on_zyxel32[4]
         else: return msg+on_zyxel31[4]  
-      else: return msg+on_zyxel200[4]        
+      # else: return msg+on_zyxel200[4]        
       
       if on_zyxel200[0] == '30':
         msg += 'Check 254.41...\n'
@@ -209,12 +210,17 @@ def get_mac():
               if on_zyxel44[0] == '27':
                 msg += 'Check 254.45...\n'
                 on_zyxel45 = find_port_by_mac_zyxel('192.168.254.45', target_mac, [])
-
+                return msg+on_zyxel45[4] 
+              else: return msg+on_zyxel44[4]   
+            else: return msg+on_zyxel43[4]     
+          else: return msg+on_zyxel42[4]       
+        else: return msg+on_zyxel41[4]        
+      else: return msg+on_zyxel200[4]
 
       msg += '\n######################################################\n'
       msg += '######################################################\n'
       msg += '######################################################\n\n\n'
-      return msg
+      # return msg
   ##############################################
 
 # get_mac()
