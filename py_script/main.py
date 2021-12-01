@@ -101,7 +101,8 @@ def find_port_by_mac_dlink(host, mac, sw_ports):
       ##  # 3 - type
 
 while(True):
-  target_mac = input("Enter MAC: ")
+  # target_mac = input("Enter MAC: ")
+  target_mac = '121231'
   if target_mac != '':
     if not (re.match("[0-9a-f]{2}([-:]?)[0-9a-f]{2}(\\1[0-9a-f]{2}){4}$", target_mac.lower().strip())):
       print('error format mac-address')
