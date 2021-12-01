@@ -13,18 +13,18 @@ services:
 
   py_script:
     container_name: macCheck-pyScript
+    network_mode: host
     build:
       context: .
       dockerfile: ./py_script/Dockerfile
     restart: always
-    networks:
-      #- mac-check-Network
-      - mac-check-host
+#    networks:
+#      #- mac-check-Network
+#      - mac-check-host
     ports:
       - "8080:8080"
       
 networks:
   mac-check-Network:
     driver: bridge
-  mac-check-host:
-    driver: host        
+ 
