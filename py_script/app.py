@@ -33,13 +33,13 @@ def get_mac():
   p = cryptocode.decrypt(h, k)  ### Пароль
 
   target_mac = ''
-  
+  msg = ''
   def find_port_by_mac_zyxel(host, mac, sw_ports):
-    msg = ''
+    
     if not (re.match("[0-9a-f]{2}([-:]?)[0-9a-f]{2}(\\1[0-9a-f]{2}){4}$", mac.lower().strip())):
       return('error format mac-address')
     else:
-      # msg = ''
+      msg1 = ''
       mac = mac.strip()
       tn = Telnet(host.replace('\n', ''), 23, 30)
       tn.read_until(b':')
@@ -60,14 +60,14 @@ def get_mac():
           port = mactable_item[0]
           vid = mactable_item[1]
           if port not in sw_ports:
-            msg += 'Switch: https://'+host+'\n'
+            msg1 += 'Switch: https://'+host+'\n'
             for mactable_item2 in mactable_list:
               if mactable_item2[0] == port:
-                msg += 'PORT '+port+', MAC: '+mactable_item2[2]+', VLAN: '+mactable_item2[1]
+                msg1 += 'PORT '+port+', MAC: '+mactable_item2[2]+', VLAN: '+mactable_item2[1]
                 tn.close()
-                print(msg)
+                print(msg1)
                 # return msg
-          return [port, vid, mac, host, msg]
+          return [port, vid, mac, host, msg1]
         tn.close()
 
           ##  # 0 - port
@@ -185,7 +185,7 @@ def get_mac():
             if on_zyxel33[0] == '27':
               msg += 'Check 254.34...\n'
               on_zyxel34 = find_port_by_mac_zyxel('192.168.254.34', target_mac, ['27'])
-          else: return on_zyxel32[4]    
+          else: return msg+on_zyxel32[4]    
       
       if on_zyxel200[0] == '30':
         msg += 'Check 254.41...\n'
