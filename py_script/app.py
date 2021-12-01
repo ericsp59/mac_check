@@ -33,9 +33,9 @@ def get_mac():
   p = cryptocode.decrypt(h, k)  ### Пароль
 
   target_mac = ''
-
+  
   def find_port_by_mac_zyxel(host, mac, sw_ports):
-    
+    msg = ''
     if not (re.match("[0-9a-f]{2}([-:]?)[0-9a-f]{2}(\\1[0-9a-f]{2}){4}$", mac.lower().strip())):
       return('error format mac-address')
     else:
@@ -129,7 +129,7 @@ def get_mac():
   # while(True):
   # target_mac = input("Enter MAC: ")
   target_mac = '10:e7:c6:ec:86:8d'
-  msg = ''
+  
   if target_mac != '':
     if not (re.match("[0-9a-f]{2}([-:]?)[0-9a-f]{2}(\\1[0-9a-f]{2}){4}$", target_mac.lower().strip())):
       return('error format mac-address')
