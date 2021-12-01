@@ -82,6 +82,7 @@ def get_mac():
       return('error format mac-address')
       time.sleep(5000)
     else:
+      msg1 = ''
       mac = mac.strip()
       tn = Telnet(host.replace('\n', ''), 23, 30)
       tn.read_until(b':')
@@ -105,21 +106,19 @@ def get_mac():
         if mactable_item[2].replace('-', '').lower() == mac.replace(':', ''):
           port = mactable_item[3]
           vid = mactable_item[0]
-          print(f'device: {host}')
-          print(f"PORT: {port}")
-          print(f"VID: {vid}")
-          print('***********************\n')
+          msg1 += 'device: '+ host
+          msg1 += "PORT:" +port
+          msg1 += "VID: "+ vid
+          msg1 += '***********************\n'
           if port not in sw_ports:
             # print('')
             # print(f'Host: {host}')
             for mactable_item2 in mactable_list:
               if mactable_item2 != []:
                 if mactable_item2[3] == port :
-                  print(f'PORT {port}: {mactable_item2[2]}, VLAN: {mactable_item2[0]}')
+                  msg1 += 'PORT '+ port+ ': ' + mactable_item2[2]+ ', VLAN: ' + mactable_item2[0]
                   tn.close()
-          return [port, vid, mac, host]
-          print(123)
-
+          return [port, vid, mac, host, msg1]
         tn.close()
 
         ##  # 0 - port
@@ -129,7 +128,7 @@ def get_mac():
 
   # while(True):
   # target_mac = input("Enter MAC: ")
-  target_mac = '00:23:63:83:68:0f'
+  target_mac = ' 4C-52-62-15-BD-CD'
   
   if target_mac != '':
     if not (re.match("[0-9a-f]{2}([-:]?)[0-9a-f]{2}(\\1[0-9a-f]{2}){4}$", target_mac.lower().strip())):
