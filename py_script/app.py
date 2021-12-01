@@ -4,6 +4,7 @@ import time
 from telnetlib import Telnet
 import cryptocode
 import os
+import json
 
 app = Flask(__name__)
 @app.route('/')
@@ -128,7 +129,7 @@ def get_mac():
 
   # while(True):
   # target_mac = input("Enter MAC: ")
-  target_mac = '10:e7:c6:ec:86:8d'
+  target_mac = '1c:1b:b5:e9:04:bc'
   
   if target_mac != '':
     if not (re.match("[0-9a-f]{2}([-:]?)[0-9a-f]{2}(\\1[0-9a-f]{2}){4}$", target_mac.lower().strip())):
@@ -185,7 +186,10 @@ def get_mac():
             if on_zyxel33[0] == '27':
               msg += 'Check 254.34...\n'
               on_zyxel34 = find_port_by_mac_zyxel('192.168.254.34', target_mac, ['27'])
-          else: return msg+on_zyxel32[4]    
+            else: return msg+on_zyxel33[4]  
+          else: return msg+on_zyxel32[4]
+        else: return msg+on_zyxel31[4]  
+      else: return msg+on_zyxel200[4]        
       
       if on_zyxel200[0] == '30':
         msg += 'Check 254.41...\n'
