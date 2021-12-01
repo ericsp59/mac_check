@@ -3,12 +3,23 @@ import re
 import time
 from telnetlib import Telnet
 import cryptocode
+import os
 
+# app = Flask(__name__)
+# @app.route('/')
+# def hello_world():
+#     return 'Hello, Docker!'
 
-app = Flask(__name__)
-@app.route('/')
-def hello_world():
-    return 'Hello, Docker!'
+def check_ping():
+  hostname = "8.8.8.8"
+  response = os.system("ping -c 5" + hostname)
+  print(response)
+  if response == 0:
+      pingstatus = "Network Active"
+  else:
+      pingstatus = "Network Error"
+
+  return pingstatus        
 
 # def get_mac():
 #   f = open('text.txt', 'r')
