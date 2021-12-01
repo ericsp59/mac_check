@@ -8,7 +8,7 @@ function App() {
           MAC_CHECK 
         </h1>
         <input className="mac-check_input" />
-        <button className='mac-check_btn'>check</button>
+        <a href='http://172.27.0.2:8080"' className='mac-check_btn'>check</a>
       </header>
     </div>
   );
