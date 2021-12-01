@@ -123,7 +123,8 @@ def get_mac():
 
   # while(True):
   # target_mac = input("Enter MAC: ")
-  target_mac = '121231'
+  target_mac = '10:e7:c6:ec:86:8d'
+  msg = ''
   if target_mac != '':
     if not (re.match("[0-9a-f]{2}([-:]?)[0-9a-f]{2}(\\1[0-9a-f]{2}){4}$", target_mac.lower().strip())):
       return('error format mac-address')
@@ -131,10 +132,12 @@ def get_mac():
     else:
       target_mac = target_mac.lower()
       on_zyxel200 = find_port_by_mac_zyxel('192.168.254.200', target_mac, ['1', '2', '3', '4', '5', '11', '25', '26', '29', '30'])
-      print(f"MAC: {target_mac.strip()}")
+
+      msg = "MAC: {target_mac.strip()}\n"
       print(f'XGS4600: {on_zyxel200[3]}')
       print(f'Port: {on_zyxel200[0]}')
       print('-------------------\n')
+      return msg
       
       if on_zyxel200[0] == '1':
         print(f'{on_zyxel200[2]} \n Web Interface Only --> http://192.168.254.5')
