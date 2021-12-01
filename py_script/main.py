@@ -100,81 +100,81 @@ def find_port_by_mac_dlink(host, mac, sw_ports):
       ##  # 2 - mac
       ##  # 3 - type
 
-while(True):
-  # target_mac = input("Enter MAC: ")
-  target_mac = '121231'
-  if target_mac != '':
-    if not (re.match("[0-9a-f]{2}([-:]?)[0-9a-f]{2}(\\1[0-9a-f]{2}){4}$", target_mac.lower().strip())):
-      print('error format mac-address')
-      print('\n\n')
-    else:
-      target_mac = target_mac.lower()
-      on_zyxel200 = find_port_by_mac_zyxel('192.168.254.200', target_mac, ['1', '2', '3', '4', '5', '11', '25', '26', '29', '30'])
-      print(f"MAC: {target_mac.strip()}")
-      print(f'XGS4600: {on_zyxel200[3]}')
-      print(f'Port: {on_zyxel200[0]}')
-      print('-------------------\n')
-      
-      if on_zyxel200[0] == '1':
-        print(f'{on_zyxel200[2]} \n Web Interface Only --> http://192.168.254.5')
-      
-      if on_zyxel200[0] == '2':
-        print(f'{on_zyxel200[2]} \n Web Interface Only --> http://192.168.254.6')
-      
-      if on_zyxel200[0] == '3':
-        print(f'{on_zyxel200[2]} \n Web Interface Only --> http://192.168.254.7')
-      
-      if on_zyxel200[0] == '4':
-        on_dlink21 = find_port_by_mac_dlink('192.168.254.21', target_mac, [])
-      
-      if on_zyxel200[0] == '5':
-        print(f'{on_zyxel200[2]} \n Web Interface Only --> http://192.168.254.22/')
-      ##################################################
-      
-      if on_zyxel200[0] == '11':
-        print(f'Check 254.8...')
-        on_zyxel8 = find_port_by_mac_zyxel('192.168.254.8', target_mac, [])
-  
-      
-      if on_zyxel200[0] == '25':
-        print(f'Check 254.35...')
-        on_zyxel35 = find_port_by_mac_zyxel('192.168.254.35', target_mac, [])
-      
-      if on_zyxel200[0] == '26':
-        print(f'Check 254.46...')
-        on_zyxel35 = find_port_by_mac_zyxel('192.168.254.46', target_mac, [])
-      ###################################################
-      if on_zyxel200[0] == '29':
-        print(f'Check 254.31...')
-        on_zyxel31 = find_port_by_mac_zyxel('192.168.254.31', target_mac, ['27'])
-        if on_zyxel31[0] == '27':
-          print(f'Check 254.32...')
-          on_zyxel32 = find_port_by_mac_zyxel('192.168.254.32', target_mac, ['27'])
-          if on_zyxel32[0] == '27':
-            print(f'Check 254.33...')
-            on_zyxel33 = find_port_by_mac_zyxel('192.168.254.33', target_mac, ['27'])
-            if on_zyxel33[0] == '27':
-              print(f'Check 254.34...')
-              on_zyxel34 = find_port_by_mac_zyxel('192.168.254.34', target_mac, ['27'])
-      
-      if on_zyxel200[0] == '30':
-        print(f'Check 254.41...')
-        on_zyxel41 = find_port_by_mac_zyxel('192.168.254.41', target_mac, ['27'])
-        if on_zyxel41[0] == '27':
-          print(f'Check 254.42...')
-          on_zyxel42 = find_port_by_mac_zyxel('192.168.254.42', target_mac, ['27'])
-          if on_zyxel42[0] == '27':
-            print(f'Check 254.43...')
-            on_zyxel43 = find_port_by_mac_zyxel('192.168.254.43', target_mac, ['27'])
-            if on_zyxel43[0] == '27':
-              print(f'Check 254.44...')
-              on_zyxel44 = find_port_by_mac_zyxel('192.168.254.44', target_mac, ['27'])
-              if on_zyxel44[0] == '27':
-                print(f'Check 254.45...')
-                on_zyxel45 = find_port_by_mac_zyxel('192.168.254.45', target_mac, [])
-  
-      print('\n######################################################')
-      print('######################################################')
-      print('######################################################\n\n\n')
-      
+# while(True):
+# target_mac = input("Enter MAC: ")
+target_mac = '121231'
+if target_mac != '':
+  if not (re.match("[0-9a-f]{2}([-:]?)[0-9a-f]{2}(\\1[0-9a-f]{2}){4}$", target_mac.lower().strip())):
+    print('error format mac-address')
+    print('\n\n')
+  else:
+    target_mac = target_mac.lower()
+    on_zyxel200 = find_port_by_mac_zyxel('192.168.254.200', target_mac, ['1', '2', '3', '4', '5', '11', '25', '26', '29', '30'])
+    print(f"MAC: {target_mac.strip()}")
+    print(f'XGS4600: {on_zyxel200[3]}')
+    print(f'Port: {on_zyxel200[0]}')
+    print('-------------------\n')
+    
+    if on_zyxel200[0] == '1':
+      print(f'{on_zyxel200[2]} \n Web Interface Only --> http://192.168.254.5')
+    
+    if on_zyxel200[0] == '2':
+      print(f'{on_zyxel200[2]} \n Web Interface Only --> http://192.168.254.6')
+    
+    if on_zyxel200[0] == '3':
+      print(f'{on_zyxel200[2]} \n Web Interface Only --> http://192.168.254.7')
+    
+    if on_zyxel200[0] == '4':
+      on_dlink21 = find_port_by_mac_dlink('192.168.254.21', target_mac, [])
+    
+    if on_zyxel200[0] == '5':
+      print(f'{on_zyxel200[2]} \n Web Interface Only --> http://192.168.254.22/')
+    ##################################################
+    
+    if on_zyxel200[0] == '11':
+      print(f'Check 254.8...')
+      on_zyxel8 = find_port_by_mac_zyxel('192.168.254.8', target_mac, [])
+
+    
+    if on_zyxel200[0] == '25':
+      print(f'Check 254.35...')
+      on_zyxel35 = find_port_by_mac_zyxel('192.168.254.35', target_mac, [])
+    
+    if on_zyxel200[0] == '26':
+      print(f'Check 254.46...')
+      on_zyxel35 = find_port_by_mac_zyxel('192.168.254.46', target_mac, [])
+    ###################################################
+    if on_zyxel200[0] == '29':
+      print(f'Check 254.31...')
+      on_zyxel31 = find_port_by_mac_zyxel('192.168.254.31', target_mac, ['27'])
+      if on_zyxel31[0] == '27':
+        print(f'Check 254.32...')
+        on_zyxel32 = find_port_by_mac_zyxel('192.168.254.32', target_mac, ['27'])
+        if on_zyxel32[0] == '27':
+          print(f'Check 254.33...')
+          on_zyxel33 = find_port_by_mac_zyxel('192.168.254.33', target_mac, ['27'])
+          if on_zyxel33[0] == '27':
+            print(f'Check 254.34...')
+            on_zyxel34 = find_port_by_mac_zyxel('192.168.254.34', target_mac, ['27'])
+    
+    if on_zyxel200[0] == '30':
+      print(f'Check 254.41...')
+      on_zyxel41 = find_port_by_mac_zyxel('192.168.254.41', target_mac, ['27'])
+      if on_zyxel41[0] == '27':
+        print(f'Check 254.42...')
+        on_zyxel42 = find_port_by_mac_zyxel('192.168.254.42', target_mac, ['27'])
+        if on_zyxel42[0] == '27':
+          print(f'Check 254.43...')
+          on_zyxel43 = find_port_by_mac_zyxel('192.168.254.43', target_mac, ['27'])
+          if on_zyxel43[0] == '27':
+            print(f'Check 254.44...')
+            on_zyxel44 = find_port_by_mac_zyxel('192.168.254.44', target_mac, ['27'])
+            if on_zyxel44[0] == '27':
+              print(f'Check 254.45...')
+              on_zyxel45 = find_port_by_mac_zyxel('192.168.254.45', target_mac, [])
+
+    print('\n######################################################')
+    print('######################################################')
+    print('######################################################\n\n\n')
+    
 ##############################################
