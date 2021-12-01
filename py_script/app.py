@@ -7,6 +7,7 @@ import os
 
 app = Flask(__name__)
 @app.route('/')
+
 # def hello_world():
 #     return 'Hello, Docker!'
 
@@ -24,7 +25,7 @@ app = Flask(__name__)
 # check_ping()
 
 def get_mac():
-  f = open('text.txt', 'r')
+  f = open('./py_script/text.txt', 'r')
   [h, k] = [line.strip() for line in f]
 
   user = 'admin'
@@ -33,10 +34,11 @@ def get_mac():
   target_mac = ''
 
   def find_port_by_mac_zyxel(host, mac, sw_ports):
-    msg = ''
+    
     if not (re.match("[0-9a-f]{2}([-:]?)[0-9a-f]{2}(\\1[0-9a-f]{2}){4}$", mac.lower().strip())):
       return('error format mac-address')
     else:
+      msg = ''
       mac = mac.strip()
       tn = Telnet(host.replace('\n', ''), 23, 30)
       tn.read_until(b':')
@@ -57,12 +59,12 @@ def get_mac():
           port = mactable_item[0]
           vid = mactable_item[1]
           if port not in sw_ports:
-            msg += '\n'
-            msg += 'Switch: https://'+host
+            msg += 'Switch: https://'+host+'\n'
             for mactable_item2 in mactable_list:
               if mactable_item2[0] == port:
-                msg += 'PORT '+port+' : '+mactable_item2[2]+' ,  VLAN: '+mactable_item2[1]
+                msg += 'PORT '+port+', MAC: '+mactable_item2[2]+', VLAN: '+mactable_item2[1]
                 tn.close()
+                print(msg)
                 return msg
           return [port, vid, mac, host]
         tn.close()
@@ -205,3 +207,4 @@ def get_mac():
       return msg
   ##############################################
 
+# get_mac()
