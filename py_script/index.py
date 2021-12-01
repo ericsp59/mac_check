@@ -1,7 +1,6 @@
-from http.server import HTTPServer, CGIHTTPRequestHandler
-port = 8080
-httpd = HTTPServer(('', port), CGIHTTPRequestHandler)
-print("Starting simple_httpd on port: " + str(httpd.server_port))
-httpd.serve_forever()
+from flask import Flask
+app = Flask(__name__)
 
-# print(123123123)
+@app.route('/')
+def hello_world():
+    return 'Hello, Docker!'

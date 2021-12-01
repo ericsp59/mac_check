@@ -5,6 +5,6 @@ COPY ./py_script/main.py ./py_script/requirements.txt ./py_script/index.py ./py_
 #RUN pip install --upgrade pip
 # RUN apt-get update -y && apt-get install libsasl2-dev python-dev libldap2-dev libssl-dev libsnmp-dev
 RUN pip install -r requirements.txt
-RUN python main.py
+RUN python index.py
 
 # EXPOSE 8080
