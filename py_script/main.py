@@ -4,7 +4,8 @@ from telnetlib import Telnet
 import cryptocode
 
 f = open('py_script/text.txt', 'r')
-[h, k] = [line.strip() for line in f]
+# [h, k] = [line.strip() for line in f]
+[h, k ] = ['3pqrCThelO+T6g==*RCGReXyihaAydVOVDG2SyQ==*v7MIjSV82qiStHZK19/mlg==*Eu5yDPa3Z9xecbx/OwEMWg==', 'cirpk']
 
 user = 'admin'
 p = cryptocode.decrypt(h, k)  ### Пароль
