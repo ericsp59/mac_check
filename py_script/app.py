@@ -134,72 +134,72 @@ def get_mac():
       on_zyxel200 = find_port_by_mac_zyxel('192.168.254.200', target_mac, ['1', '2', '3', '4', '5', '11', '25', '26', '29', '30'])
 
       msg = "MAC: "+target_mac.strip() + "\n"
-      print(f'XGS4600: {on_zyxel200[3]}')
-      print(f'Port: {on_zyxel200[0]}')
-      print('-------------------\n')
-      return msg
+      msg += 'XGS4600: '+ on_zyxel200[3]+'\n'
+      msg += 'Port: '+on_zyxel200[0]+'\n'
+      msg += '-------------------\n'
+      
       
       if on_zyxel200[0] == '1':
-        print(f'{on_zyxel200[2]} \n Web Interface Only --> http://192.168.254.5')
+        msg += on_zyxel200[2] + '\n Web Interface Only --> http://192.168.254.5'
       
       if on_zyxel200[0] == '2':
-        print(f'{on_zyxel200[2]} \n Web Interface Only --> http://192.168.254.6')
+        msg += on_zyxel200[2]+ '\n Web Interface Only --> http://192.168.254.6'
       
       if on_zyxel200[0] == '3':
-        print(f'{on_zyxel200[2]} \n Web Interface Only --> http://192.168.254.7')
+        msg += on_zyxel200[2]+ '\n Web Interface Only --> http://192.168.254.7'
       
       if on_zyxel200[0] == '4':
         on_dlink21 = find_port_by_mac_dlink('192.168.254.21', target_mac, [])
       
       if on_zyxel200[0] == '5':
-        print(f'{on_zyxel200[2]} \n Web Interface Only --> http://192.168.254.22/')
+        msg += on_zyxel200[2]+ '\n Web Interface Only --> http://192.168.254.22/'
       ##################################################
       
       if on_zyxel200[0] == '11':
-        print(f'Check 254.8...')
+        msg += 'Check 254.8...\n'
         on_zyxel8 = find_port_by_mac_zyxel('192.168.254.8', target_mac, [])
 
       
       if on_zyxel200[0] == '25':
-        print(f'Check 254.35...')
+        msg += 'Check 254.35...\n'
         on_zyxel35 = find_port_by_mac_zyxel('192.168.254.35', target_mac, [])
       
       if on_zyxel200[0] == '26':
-        print(f'Check 254.46...')
+        msg += 'Check 254.46...\n'
         on_zyxel35 = find_port_by_mac_zyxel('192.168.254.46', target_mac, [])
       ###################################################
       if on_zyxel200[0] == '29':
-        print(f'Check 254.31...')
+        msg += 'Check 254.31...\n'
         on_zyxel31 = find_port_by_mac_zyxel('192.168.254.31', target_mac, ['27'])
         if on_zyxel31[0] == '27':
-          print(f'Check 254.32...')
+          msg += 'Check 254.32...\n'
           on_zyxel32 = find_port_by_mac_zyxel('192.168.254.32', target_mac, ['27'])
           if on_zyxel32[0] == '27':
-            print(f'Check 254.33...')
+            msg += 'Check 254.33...\n'
             on_zyxel33 = find_port_by_mac_zyxel('192.168.254.33', target_mac, ['27'])
             if on_zyxel33[0] == '27':
-              print(f'Check 254.34...')
+              msg += 'Check 254.34...\n'
               on_zyxel34 = find_port_by_mac_zyxel('192.168.254.34', target_mac, ['27'])
       
       if on_zyxel200[0] == '30':
-        print(f'Check 254.41...')
+        msg += 'Check 254.41...\n'
         on_zyxel41 = find_port_by_mac_zyxel('192.168.254.41', target_mac, ['27'])
         if on_zyxel41[0] == '27':
-          print(f'Check 254.42...')
+          msg += 'Check 254.42...\n'
           on_zyxel42 = find_port_by_mac_zyxel('192.168.254.42', target_mac, ['27'])
           if on_zyxel42[0] == '27':
-            print(f'Check 254.43...')
+            msg += 'Check 254.43...\n'
             on_zyxel43 = find_port_by_mac_zyxel('192.168.254.43', target_mac, ['27'])
             if on_zyxel43[0] == '27':
-              print(f'Check 254.44...')
+              msg += 'Check 254.44...\n'
               on_zyxel44 = find_port_by_mac_zyxel('192.168.254.44', target_mac, ['27'])
               if on_zyxel44[0] == '27':
-                print(f'Check 254.45...')
+                msg += 'Check 254.45...\n'
                 on_zyxel45 = find_port_by_mac_zyxel('192.168.254.45', target_mac, [])
 
-      print('\n######################################################')
-      print('######################################################')
-      print('######################################################\n\n\n')
+      msg += '\n######################################################\n'
+      msg += '######################################################\n'
+      msg += '######################################################\n\n\n'
       
   ##############################################
 
