@@ -35,86 +35,86 @@ def get_mac():
   def find_port_by_mac_zyxel(host, mac, sw_ports):
     if not (re.match("[0-9a-f]{2}([-:]?)[0-9a-f]{2}(\\1[0-9a-f]{2}){4}$", mac.lower().strip())):
       return('error format mac-address')
-    else:
-      mac = mac.strip()
-      tn = Telnet(host.replace('\n', ''), 23, 30)
-      tn.read_until(b':')
-      tn.write((user + '\n').encode('ascii'))
-      tn.read_until(b':')
-      tn.write((p + '\n').encode('ascii'))
-      tn.read_until(b'#')
-      time.sleep(2)
-      tn.write(('show mac address-table all' + '\n').encode('ascii'))
-      mactable = (str(tn.read_until(b'#'))).split('\\r\\n')
-      del mactable[0:2]
-      mactable.pop(-1)
-      mactable_list = [item.split() for item in mactable]
+  #   else:
+  #     mac = mac.strip()
+  #     tn = Telnet(host.replace('\n', ''), 23, 30)
+  #     tn.read_until(b':')
+  #     tn.write((user + '\n').encode('ascii'))
+  #     tn.read_until(b':')
+  #     tn.write((p + '\n').encode('ascii'))
+  #     tn.read_until(b'#')
+  #     time.sleep(2)
+  #     tn.write(('show mac address-table all' + '\n').encode('ascii'))
+  #     mactable = (str(tn.read_until(b'#'))).split('\\r\\n')
+  #     del mactable[0:2]
+  #     mactable.pop(-1)
+  #     mactable_list = [item.split() for item in mactable]
 
-      for mactable_item in mactable_list:
-        mac = mac.replace('-', ':')
-        if mactable_item[2].replace(':', '') == mac.replace(':', ''):
-          port = mactable_item[0]
-          vid = mactable_item[1]
-          if port not in sw_ports:
-            print('')
-            print(f'Switch: https://{host}')
-            for mactable_item2 in mactable_list:
-              if mactable_item2[0] == port:
-                print (f'PORT {port}: {mactable_item2[2]}, VLAN: {mactable_item2[1]}')
-                tn.close()
-          return [port, vid, mac, host]
-        tn.close()
+  #     for mactable_item in mactable_list:
+  #       mac = mac.replace('-', ':')
+  #       if mactable_item[2].replace(':', '') == mac.replace(':', ''):
+  #         port = mactable_item[0]
+  #         vid = mactable_item[1]
+  #         if port not in sw_ports:
+  #           print('')
+  #           print(f'Switch: https://{host}')
+  #           for mactable_item2 in mactable_list:
+  #             if mactable_item2[0] == port:
+  #               print (f'PORT {port}: {mactable_item2[2]}, VLAN: {mactable_item2[1]}')
+  #               tn.close()
+  #         return [port, vid, mac, host]
+  #       tn.close()
 
-          ##  # 0 - port
-          ##  # 1 - VID
-          ##  # 2 - mac
-          ##  # 3 - type
+  #         ##  # 0 - port
+  #         ##  # 1 - VID
+  #         ##  # 2 - mac
+  #         ##  # 3 - type
 
 
-  def find_port_by_mac_dlink(host, mac, sw_ports):
-    if not (re.match("[0-9a-f]{2}([-:]?)[0-9a-f]{2}(\\1[0-9a-f]{2}){4}$", mac.lower().strip())):
-      return('error format mac-address')
-      time.sleep(5000)
-    else:
-      mac = mac.strip()
-      tn = Telnet(host.replace('\n', ''), 23, 30)
-      tn.read_until(b':')
-      tn.write((user + '\n').encode('ascii'))
-      tn.read_until(b':')
-      tn.write((p + '\n').encode('ascii'))
-      tn.read_until(b'#')
-      # print(l)
-      time.sleep(2)
-      tn.write(('show fdb mac_address '+ mac + '\n').encode('ascii'))
-      mactable = (str(tn.read_until(b'#'))).split('\\n\\r')
-      del mactable[0:5]
-      del mactable[2:-1]
-      mactable.pop(-1)
-      mactable_list = [item.split() for item in mactable]
-      #
-      for mactable_item in mactable_list:
-        mac = mac.replace('-', ':')
-        # print(mactable_item[2])
-        # print(mac)
-        if mactable_item[2].replace('-', '').lower() == mac.replace(':', ''):
-          port = mactable_item[3]
-          vid = mactable_item[0]
-          print(f'device: {host}')
-          print(f"PORT: {port}")
-          print(f"VID: {vid}")
-          print('***********************\n')
-          if port not in sw_ports:
-            # print('')
-            # print(f'Host: {host}')
-            for mactable_item2 in mactable_list:
-              if mactable_item2 != []:
-                if mactable_item2[3] == port :
-                  print(f'PORT {port}: {mactable_item2[2]}, VLAN: {mactable_item2[0]}')
-                  tn.close()
-          return [port, vid, mac, host]
-          print(123)
+  # def find_port_by_mac_dlink(host, mac, sw_ports):
+  #   if not (re.match("[0-9a-f]{2}([-:]?)[0-9a-f]{2}(\\1[0-9a-f]{2}){4}$", mac.lower().strip())):
+  #     return('error format mac-address')
+  #     time.sleep(5000)
+  #   else:
+  #     mac = mac.strip()
+  #     tn = Telnet(host.replace('\n', ''), 23, 30)
+  #     tn.read_until(b':')
+  #     tn.write((user + '\n').encode('ascii'))
+  #     tn.read_until(b':')
+  #     tn.write((p + '\n').encode('ascii'))
+  #     tn.read_until(b'#')
+  #     # print(l)
+  #     time.sleep(2)
+  #     tn.write(('show fdb mac_address '+ mac + '\n').encode('ascii'))
+  #     mactable = (str(tn.read_until(b'#'))).split('\\n\\r')
+  #     del mactable[0:5]
+  #     del mactable[2:-1]
+  #     mactable.pop(-1)
+  #     mactable_list = [item.split() for item in mactable]
+  #     #
+  #     for mactable_item in mactable_list:
+  #       mac = mac.replace('-', ':')
+  #       # print(mactable_item[2])
+  #       # print(mac)
+  #       if mactable_item[2].replace('-', '').lower() == mac.replace(':', ''):
+  #         port = mactable_item[3]
+  #         vid = mactable_item[0]
+  #         print(f'device: {host}')
+  #         print(f"PORT: {port}")
+  #         print(f"VID: {vid}")
+  #         print('***********************\n')
+  #         if port not in sw_ports:
+  #           # print('')
+  #           # print(f'Host: {host}')
+  #           for mactable_item2 in mactable_list:
+  #             if mactable_item2 != []:
+  #               if mactable_item2[3] == port :
+  #                 print(f'PORT {port}: {mactable_item2[2]}, VLAN: {mactable_item2[0]}')
+  #                 tn.close()
+  #         return [port, vid, mac, host]
+  #         print(123)
 
-        tn.close()
+  #       tn.close()
 
         ##  # 0 - port
         ##  # 1 - VID
@@ -126,7 +126,7 @@ def get_mac():
   target_mac = '121231'
   if target_mac != '':
     if not (re.match("[0-9a-f]{2}([-:]?)[0-9a-f]{2}(\\1[0-9a-f]{2}){4}$", target_mac.lower().strip())):
-      print('error format mac-address')
+      return('error format mac-address')
       print('\n\n')
     else:
       target_mac = target_mac.lower()
