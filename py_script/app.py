@@ -12,7 +12,7 @@ app = Flask(__name__)
 
 def check_ping():
   hostname = "8.8.8.8"
-  response = os.system("ping -c 5" + hostname)
+  response = os.system("ping -c 5 " + hostname)
   print(response)
   if response == 0:
       pingstatus = "Network Active"
