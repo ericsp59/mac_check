@@ -11,15 +11,17 @@ app = Flask(__name__)
 #     return 'Hello, Docker!'
 
 def check_ping():
-  hostname = "8.8.8.8"
-  response = os.system("ping -c 5 " + hostname)
+  hostname = "192.168.254.5"
+  response = os.system("ping -c 1 " + hostname)
   print(response)
   if response == 0:
       pingstatus = "Network Active"
   else:
       pingstatus = "Network Error"
-
+  print(pingstatus)
   return pingstatus        
+
+# check_ping()
 
 # def get_mac():
 #   f = open('text.txt', 'r')
