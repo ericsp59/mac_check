@@ -19,9 +19,12 @@ services:
     restart: always
     networks:
       - mac-check-Network
+      - mac-check-host
     ports:
       - "8080:8080"
       
 networks:
   mac-check-Network:
-    driver: bridge      
+    driver: bridge
+  mac-check-host:
+    driver: host        
