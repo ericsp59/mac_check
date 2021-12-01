@@ -5,8 +5,8 @@ from telnetlib import Telnet
 import cryptocode
 import os
 
-# app = Flask(__name__)
-# @app.route('/')
+app = Flask(__name__)
+@app.route('/')
 # def hello_world():
 #     return 'Hello, Docker!'
 
