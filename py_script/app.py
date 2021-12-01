@@ -34,7 +34,7 @@ def get_mac():
 
   def find_port_by_mac_zyxel(host, mac, sw_ports):
     if not (re.match("[0-9a-f]{2}([-:]?)[0-9a-f]{2}(\\1[0-9a-f]{2}){4}$", mac.lower().strip())):
-      print('error format mac-address')
+      return('error format mac-address')
     else:
       mac = mac.strip()
       tn = Telnet(host.replace('\n', ''), 23, 30)
@@ -73,7 +73,7 @@ def get_mac():
 
   def find_port_by_mac_dlink(host, mac, sw_ports):
     if not (re.match("[0-9a-f]{2}([-:]?)[0-9a-f]{2}(\\1[0-9a-f]{2}){4}$", mac.lower().strip())):
-      print('error format mac-address')
+      return('error format mac-address')
       time.sleep(5000)
     else:
       mac = mac.strip()
