@@ -18,7 +18,7 @@ services:
       dockerfile: ./py_script/Dockerfile
     restart: always
     networks:
-      - mac-check-Network
+      #- mac-check-Network
       - mac-check-host
     ports:
       - "8080:8080"
