@@ -1,7 +1,7 @@
 version: '3'
 services:
   mac_check-app:
-    container_name: mac_check-app
+    container_name: macCheck-app
     build:
       context: .
       dockerfile: ./react-app/Dockerfile
@@ -11,6 +11,17 @@ services:
     ports:
       - "80:80"
 
+  py_script:
+    container_name: mackCheck-pyScript
+    build:
+      context: .
+      dockerfile: ./py_script/Dockerfile
+    restart: always
+    networks:
+      - mack-check-Network
+    ports:
+      - "8080:8080"
+      
 networks:
   mack-check-Network:
     driver: bridge      
