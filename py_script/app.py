@@ -113,7 +113,7 @@ def get_mac():
         ##  # 2 - mac
         ##  # 3 - type
 
-  target_mac = 'f4:4d:30:e6:10:1d'
+  target_mac = '	00:68:eb:84:ff:fe'
   
   if target_mac != '':
     if not (re.match("[0-9a-f]{2}([-:]?)[0-9a-f]{2}(\\1[0-9a-f]{2}){4}$", target_mac.lower().strip())):
