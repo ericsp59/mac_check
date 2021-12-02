@@ -8,6 +8,6 @@ COPY ./py_script/main.py ./py_script/app.py ./py_script/Dockerfile ./py_script/t
 # RUN apt-get update -y && apt-get install libsasl2-dev python-dev libldap2-dev libssl-dev libsnmp-dev
 # RUN apt-get update -y
 # RUN apt-get install -y iputils-ping
-CMD [ "python3", "-m" , "flask", "run", "--host=0.0.0.0", "--port=8080"]
+CMD [ "python", "-m" , "flask", "run", "--host=0.0.0.0", "--port=8080"]
 
 EXPOSE 8080
