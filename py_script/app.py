@@ -1,13 +1,13 @@
-from flask import Flask
+#from flask import Flask
 import re
 import time
 from telnetlib import Telnet
 import cryptocode
 import os
-from flask import jsonify
+#from flask import jsonify
 
-app = Flask(__name__)
-@app.route('/')
+# app = Flask(__name__)
+# @app.route('/')
 
 # def hello_world():
 #     return 'Hello, Docker!'
@@ -27,8 +27,8 @@ app = Flask(__name__)
 
 
 def get_mac():
-  # f = open('./py_script/text.txt', 'r')
-  f = open('text.txt', 'r')
+  f = open('./py_script/text.txt', 'r')
+  # f = open('text.txt', 'r')
   [h, k] = [line.strip() for line in f]
 
   user = 'admin'
@@ -36,7 +36,10 @@ def get_mac():
 
   target_mac = ''
   msg = ''
-  res = ''
+  msg2 = ''
+
+  result = ''
+  
   def find_port_by_mac_zyxel(host, mac, sw_ports):
     
     if not (re.match("[0-9a-f]{2}([-:]?)[0-9a-f]{2}(\\1[0-9a-f]{2}){4}$", mac.lower().strip())):
@@ -66,9 +69,9 @@ def get_mac():
             msg1 += 'Switch: https://'+host+'\n'
             for mactable_item2 in mactable_list:
               if mactable_item2[0] == port:
-                msg1 += 'PORT '+port+', MAC: '+mactable_item2[2]+', VLAN: '+mactable_item2[1]
+                msg1 += 'PORT '+port+', MAC: '+mactable_item2[2]+', VLAN: '+mactable_item2[1]+'\n'
                 tn.close()
-                print(msg1)
+                # print(msg1)
                 # return msg
           return [port, vid, mac, host, msg1]
         tn.close()
@@ -129,98 +132,103 @@ def get_mac():
 
   # while(True):
   # target_mac = input("Enter MAC: ")
-  target_mac = '	04:0e:3c:ec:59:8c'
+  # target_mac = 'f4:8c:eb:f9:b2:ac'
+  target_mac = 'f4:4d:30:e6:10:1d'
   
   if target_mac != '':
     if not (re.match("[0-9a-f]{2}([-:]?)[0-9a-f]{2}(\\1[0-9a-f]{2}){4}$", target_mac.lower().strip())):
       return ('error format mac-address')
-      print('\n\n')
     else:
       target_mac = target_mac.lower()
       on_zyxel200 = find_port_by_mac_zyxel('192.168.254.200', target_mac, ['1', '2', '3', '4', '5', '11', '25', '26', '29', '30'])
-
+      if (on_zyxel200 is None):
+        return f'{target_mac} Not Found on 192.168.254.200\n'
       msg = "MAC: "+target_mac.strip() + "\n"
+      
       msg += 'XGS4600: '+ on_zyxel200[3]+'\n'
       msg += 'Port: '+on_zyxel200[0]+'\n'
       msg += '-------------------\n'
       
-      
       if on_zyxel200[0] == '1':
         msg += on_zyxel200[2] + '\n Web Interface Only --> http://192.168.254.5'
-      
+        result =  msg+on_zyxel200[2]
+        # return result
+
       if on_zyxel200[0] == '2':
         msg += on_zyxel200[2]+ '\n Web Interface Only --> http://192.168.254.6'
+        result = msg+on_zyxel200[2]
+        # return result
       
       if on_zyxel200[0] == '3':
         msg += on_zyxel200[2]+ '\n Web Interface Only --> http://192.168.254.7'
-      
+        result =  msg+on_zyxel200[2]
+        # return result
+
       if on_zyxel200[0] == '4':
         on_dlink21 = find_port_by_mac_dlink('192.168.254.21', target_mac, [])
-        return msg+on_dlink21[4]
+        result = msg+on_dlink21[4]
+        # return result
       
       if on_zyxel200[0] == '5':
         msg += on_zyxel200[2]+ '\n Web Interface Only --> http://192.168.254.22/'
+        result = msg+on_zyxel200[2]
+        # return result
       ##################################################
       
       if on_zyxel200[0] == '11':
         msg += 'Check 254.8...\n'
         on_zyxel8 = find_port_by_mac_zyxel('192.168.254.8', target_mac, [])
-        return msg+on_zyxel8[4]
+        result = msg+on_zyxel8[4]
+
       
       if on_zyxel200[0] == '25':
         msg += 'Check 254.35...\n'
         on_zyxel35 = find_port_by_mac_zyxel('192.168.254.35', target_mac, [])
-        return msg+on_zyxel35[4]
+        result = msg+on_zyxel35[4]
       
       if on_zyxel200[0] == '26':
         msg += 'Check 254.46...\n'
         on_zyxel46 = find_port_by_mac_zyxel('192.168.254.46', target_mac, [])
-        return msg+on_zyxel46[4]
+        result = msg+on_zyxel46[4]
       ###################################################
       if on_zyxel200[0] == '29':
-        msg += 'Check 254.31...\n'
+        msg2 = 'Check 254.31...\n'
         on_zyxel31 = find_port_by_mac_zyxel('192.168.254.31', target_mac, ['27'])
         if on_zyxel31[0] == '27':
-          msg += 'Check 254.32...\n'
+          msg2 += 'Check 254.32...\n'
           on_zyxel32 = find_port_by_mac_zyxel('192.168.254.32', target_mac, ['27'])
           if on_zyxel32[0] == '27':
-            msg += 'Check 254.33...\n'
+            msg2 += 'Check 254.33...\n'
             on_zyxel33 = find_port_by_mac_zyxel('192.168.254.33', target_mac, ['27'])
             if on_zyxel33[0] == '27':
-              msg += 'Check 254.34...\n'
+              msg2 += 'Check 254.34...\n'
               on_zyxel34 = find_port_by_mac_zyxel('192.168.254.34', target_mac, ['27'])
-              return msg+on_zyxel34[4]
-            else: return msg+on_zyxel33[4]  
-          else: return msg+on_zyxel32[4]
-        else: return msg+on_zyxel31[4]  
-      # else: return msg+on_zyxel200[4]        
+              result = msg+msg2+on_zyxel34[4]
+            else: result = msg + msg2+on_zyxel33[4]  
+          else: result = msg+msg2+on_zyxel32[4]
+        else: result = msg+msg2+on_zyxel31[4]  
+            
       
       if on_zyxel200[0] == '30':
-        msg += 'Check 254.41...\n'
+        msg2 = 'Check 254.41...\n'
         on_zyxel41 = find_port_by_mac_zyxel('192.168.254.41', target_mac, ['27'])
         if on_zyxel41[0] == '27':
-          msg += 'Check 254.42...\n'
+          msg2 += 'Check 254.42...\n'
           on_zyxel42 = find_port_by_mac_zyxel('192.168.254.42', target_mac, ['27'])
           if on_zyxel42[0] == '27':
-            msg += 'Check 254.43...\n'
+            msg2 += 'Check 254.43...\n'
             on_zyxel43 = find_port_by_mac_zyxel('192.168.254.43', target_mac, ['27'])
             if on_zyxel43[0] == '27':
-              msg += 'Check 254.44...\n'
+              msg2 += 'Check 254.44...\n'
               on_zyxel44 = find_port_by_mac_zyxel('192.168.254.44', target_mac, ['27'])
               if on_zyxel44[0] == '27':
-                msg += 'Check 254.45...\n'
+                msg2 += 'Check 254.45...\n'
                 on_zyxel45 = find_port_by_mac_zyxel('192.168.254.45', target_mac, [])
-                return msg+on_zyxel45[4] 
-              else: return msg+on_zyxel44[4]   
-            else: return msg+on_zyxel43[4]     
-          else: return msg+on_zyxel42[4]       
-        else: return msg+on_zyxel41[4]        
-      else: return msg+on_zyxel200[4]
-
-      msg += '\n######################################################\n'
-      msg += '######################################################\n'
-      msg += '######################################################\n\n\n'
-      # return msg
+                result = msg+msg2+on_zyxel45[4] 
+              else: result = msg+msg2+on_zyxel44[4]   
+            else: result = msg+msg2+on_zyxel43[4]     
+          else: result = msg+msg2+on_zyxel42[4]       
+        else: result = msg+msg2+on_zyxel41[4]        
+    return result
   ##############################################
-
-# get_mac()
+print(get_mac())
