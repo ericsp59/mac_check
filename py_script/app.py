@@ -4,10 +4,10 @@ import time
 from telnetlib import Telnet
 import cryptocode
 import os
-#from flask import jsonify
+from flask import jsonify
 
-# app = Flask(__name__)
-# @app.route('/')
+app = Flask(__name__)
+@app.route('/')
 
 # def hello_world():
 #     return 'Hello, Docker!'
@@ -27,7 +27,7 @@ import os
 
 
 def get_mac():
-  f = open('./py_script/text.txt', 'r')
+  f = open('./text.txt', 'r')
   # f = open('text.txt', 'r')
   [h, k] = [line.strip() for line in f]
 
@@ -231,4 +231,4 @@ def get_mac():
         else: result = msg+msg2+on_zyxel41[4]        
     return result
   ##############################################
-print(get_mac())
+# print(get_mac())
