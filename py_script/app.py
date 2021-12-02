@@ -200,6 +200,6 @@ def get_mac():
             else: result = msg+msg2+on_zyxel43[4]     
           else: result = msg+msg2+on_zyxel42[4]       
         else: result = msg+msg2+on_zyxel41[4]        
-    return result
+    return jsonify(result)
   ##############################################
 # print(get_mac())

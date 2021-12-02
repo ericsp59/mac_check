@@ -5,7 +5,7 @@ function App() {
     <div className="App">
       <header className="App-header">
         <h1>
-          MAC_CHECK 
+          MAC_CHECK! 
         </h1>
         <input className="mac-check_input" />
         <button href='http://192.168.50.22:8080' onClick={getData} className='mac-check_btn'>check</button>
@@ -19,8 +19,8 @@ async function getData(e){
   console.log(123)
   try {
     const response = await fetch('http://192.168.50.22:8080');
-    const json = await response.json();
-    console.log(json)
+    // const json = await response.json();
+    console.log(response)
   } catch(err) {
     alert(err); // Failed to fetch
   }
