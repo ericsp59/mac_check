@@ -9,22 +9,6 @@ from flask import jsonify
 app = Flask(__name__)
 @app.route('/')
 
-# def hello_world():
-#     return 'Hello, Docker!'
-
-# def check_ping():
-#   hostname = "192.168.254.5"
-#   response = os.system("ping -c 1 " + hostname)
-#   print(response)
-#   if response == 0:
-#       pingstatus = "Network Active"
-#   else:
-#       pingstatus = "Network Error"
-#   print(pingstatus)
-#   return pingstatus        
-
-# check_ping()
-
 
 def get_mac():
   f = open('./text.txt', 'r')
@@ -71,8 +55,7 @@ def get_mac():
               if mactable_item2[0] == port:
                 msg1 += 'PORT '+port+', MAC: '+mactable_item2[2]+', VLAN: '+mactable_item2[1]+'\n'
                 tn.close()
-                # print(msg1)
-                # return msg
+
           return [port, vid, mac, host, msg1]
         tn.close()
 
@@ -84,7 +67,7 @@ def get_mac():
   def find_port_by_mac_dlink(host, mac, sw_ports):
     if not (re.match("[0-9a-f]{2}([-:]?)[0-9a-f]{2}(\\1[0-9a-f]{2}){4}$", mac.lower().strip())):
       return ('error format mac-address')
-      time.sleep(5000)
+
     else:
       msg1 = ''
       mac = mac.strip()
@@ -94,7 +77,6 @@ def get_mac():
       tn.read_until(b':')
       tn.write((p + '\n').encode('ascii'))
       tn.read_until(b'#')
-      # print(l)
       time.sleep(2)
       tn.write(('show fdb mac_address '+ mac + '\n').encode('ascii'))
       mactable = (str(tn.read_until(b'#'))).split('\\n\\r')
@@ -105,8 +87,6 @@ def get_mac():
       #
       for mactable_item in mactable_list:
         mac = mac.replace('-', ':')
-        # print(mactable_item[2])
-        # print(mac)
         if mactable_item[2].replace('-', '').lower() == mac.replace(':', ''):
           port = mactable_item[3]
           vid = mactable_item[0]
@@ -115,8 +95,7 @@ def get_mac():
           msg1 += "VID: "+ vid
           msg1 += '***********************\n'
           if port not in sw_ports:
-            # print('')
-            # print(f'Host: {host}')
+
             for mactable_item2 in mactable_list:
               if mactable_item2 != []:
                 if mactable_item2[3] == port :
@@ -125,14 +104,6 @@ def get_mac():
           return [port, vid, mac, host, msg1]
         tn.close()
 
-        ##  # 0 - port
-        ##  # 1 - VID
-        ##  # 2 - mac
-        ##  # 3 - type
-
-  # while(True):
-  # target_mac = input("Enter MAC: ")
-  # target_mac = 'f4:8c:eb:f9:b2:ac'
   target_mac = 'f4:4d:30:e6:10:1d'
   
   if target_mac != '':
@@ -152,27 +123,24 @@ def get_mac():
       if on_zyxel200[0] == '1':
         msg += on_zyxel200[2] + '\n Web Interface Only --> http://192.168.254.5'
         result =  msg+on_zyxel200[2]
-        # return result
 
       if on_zyxel200[0] == '2':
         msg += on_zyxel200[2]+ '\n Web Interface Only --> http://192.168.254.6'
         result = msg+on_zyxel200[2]
-        # return result
       
       if on_zyxel200[0] == '3':
         msg += on_zyxel200[2]+ '\n Web Interface Only --> http://192.168.254.7'
         result =  msg+on_zyxel200[2]
-        # return result
 
       if on_zyxel200[0] == '4':
         on_dlink21 = find_port_by_mac_dlink('192.168.254.21', target_mac, [])
         result = msg+on_dlink21[4]
-        # return result
+
       
       if on_zyxel200[0] == '5':
         msg += on_zyxel200[2]+ '\n Web Interface Only --> http://192.168.254.22/'
         result = msg+on_zyxel200[2]
-        # return result
+
       ##################################################
       
       if on_zyxel200[0] == '11':
