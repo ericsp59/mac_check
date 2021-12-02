@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask-
 from flask_cors import CORS, cross_origin
 import re
 import time
@@ -7,8 +7,8 @@ import cryptocode
 # from flask import jsonify
 
 app = Flask(__name__)
-cors = CORS(app)
-app.config['CORS_HEADERS'] = 'Content-Type'
+# cors = CORS(app)
+# app.config['CORS_HEADERS'] = 'Content-Type'
 @app.route('/')
 
 def get_mac():
