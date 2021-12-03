@@ -107,7 +107,7 @@ def get_mac():
           return [port, vid, mac, host, msg1]
         tn.close()
 
-  target_mac = 'c4e90a9cfb80'
+  target_mac = 'c4e90a9cfb30'
   
   if target_mac != '':
     if not (re.match("[0-9a-f]{2}([-:]?)[0-9a-f]{2}(\\1[0-9a-f]{2}){4}$", target_mac.lower().strip())):
