@@ -4,7 +4,7 @@ from telnetlib import Telnet
 import cryptocode
 
 def get_mac():
-  f = open('text.txt', 'r')
+  f = open('./py_script/text.txt', 'r')
   [h, k] = [line.strip() for line in f]
 
   user = 'admin'
@@ -103,7 +103,7 @@ def get_mac():
 
   # while(True):
   # target_mac = input("Enter MAC: ")
-  target_mac = '121231'
+  target_mac = 'c4e90a9cfb80'
   if target_mac != '':
     if not (re.match("[0-9a-f]{2}([-:]?)[0-9a-f]{2}(\\1[0-9a-f]{2}){4}$", target_mac.lower().strip())):
       print('error format mac-address')
@@ -180,3 +180,4 @@ def get_mac():
       
   ##############################################
 
+print(get_mac())
