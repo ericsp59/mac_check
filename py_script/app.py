@@ -33,7 +33,7 @@ def get_mac():
   def find_port_by_mac_zyxel(host, mac, sw_ports):
     
     if not (re.match("[0-9a-f]{2}([-:]?)[0-9a-f]{2}(\\1[0-9a-f]{2}){4}$", mac.lower().strip())):
-      return('error format mac-address')
+      return jsonify('error format mac-address')
     else:
       msg1 = ''
       mac = mac.strip()
@@ -72,7 +72,7 @@ def get_mac():
 
   def find_port_by_mac_dlink(host, mac, sw_ports):
     if not (re.match("[0-9a-f]{2}([-:]?)[0-9a-f]{2}(\\1[0-9a-f]{2}){4}$", mac.lower().strip())):
-      return ('error format mac-address')
+      return jsonify('error format mac-address')
 
     else:
       msg1 = ''
@@ -115,12 +115,13 @@ def get_mac():
   
   if target_mac != '':
     if not (re.match("[0-9a-f]{2}([-:]?)[0-9a-f]{2}(\\1[0-9a-f]{2}){4}$", target_mac.lower().strip())):
-      return ('error format mac-address')
+      return jsonify('error format mac-address')
+
     else:
       target_mac = target_mac.lower()
       on_zyxel200 = find_port_by_mac_zyxel('192.168.254.200', target_mac, ['1', '2', '3', '4', '5', '11', '25', '26', '29', '30'])
       if (on_zyxel200 is None):
-        return f'{target_mac} Not Found on 192.168.254.200\n'
+        return jsonify(f'{target_mac} Not Found on 192.168.254.200\n')
       msg = "MAC: "+target_mac.strip() + "\n"
       
       msg += 'XGS4600: '+ on_zyxel200[3]+'\n'

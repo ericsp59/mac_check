@@ -47,11 +47,11 @@ function App() {
     try {
       const response = await fetch('http://192.168.50.22:8080?n='+inputMac);
       const json = await response.json();
-      // console.log(res)
+      console.log(json)
       setRes(json.split(',').toString())
       // console.log(res)
     } catch(err) {
-        console.log(err); // Failed to fetch
+        console.log(err.toString()); // Failed to fetch
   }
 }
 
