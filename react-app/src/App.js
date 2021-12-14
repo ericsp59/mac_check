@@ -25,9 +25,22 @@ const Btn = (props) => {
 
 
 const OutField = (props) => {
-    return (
-      <p>{`${props.res}`}</p>
-    )
+    const {res} = props
+    if (res !== '. . .') {
+      console.log(res)
+      const elements = res.map(elem => {
+        return <h6>{elem}</h6>
+      })
+      return (
+        <div className='elements'>{elements}</div>
+      )
+    }
+    return <p>{res}</p>
+
+
+
+    
+
 }
 
 
@@ -48,8 +61,10 @@ function App() {
       const response = await fetch('http://192.168.50.22:8080?n='+inputMac);
       const json = await response.json();
       console.log(json)
-      setRes(json.split(',').toString())
-      // console.log(res)
+      const x = json.split(/\n(?!\n)/)
+      console.log(typeof(res))
+      setRes(x)
+      
     } catch(err) {
         console.log(err.toString()); // Failed to fetch
   }
