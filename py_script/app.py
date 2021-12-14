@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, request
 import re
 import time
 from telnetlib import Telnet
@@ -13,7 +13,10 @@ app.config['CORS_HEADERS'] = 'Content-Type'
 @app.route('/')
 
 
+
 def get_mac():
+  n = request.args.get("n")
+  print(n)
   f = open('./text.txt', 'r')
   # f = open('text.txt', 'r')
   [h, k] = [line.strip() for line in f]
