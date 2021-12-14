@@ -45,7 +45,7 @@ function App() {
   // e.preventDefault();
   console.log('getting data...')
     try {
-      const response = await fetch('http://192.168.50.22:8080');
+      const response = await fetch('http://192.168.50.22:8080?n='+inputMac);
       const json = await response.json();
       // console.log(res)
       setRes(json.split(',').toString())

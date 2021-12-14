@@ -15,7 +15,7 @@ app.config['CORS_HEADERS'] = 'Content-Type'
 
 
 def get_mac():
-  n = request.args.get("n")
+  n = request.args.get("n", type=str)
   print(n)
   f = open('./text.txt', 'r')
   # f = open('text.txt', 'r')
