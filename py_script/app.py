@@ -176,8 +176,8 @@ def get_mac():
           on_zyxel32 = find_port_by_mac_zyxel('192.168.254.32', target_mac, ['27','8'])
           
           if on_zyxel32[0] == '8':
-            msg += on_zyxel32[2]+ '\n Web Interface Only --> http://192.168.254.82\n'
-            result =  msg
+            msg2 += on_zyxel32[2]+ '\n Web Interface Only --> http://192.168.254.82\n'
+            result =  msg2
 
           if on_zyxel32[0] == '27':
             msg2 += 'Check 254.33...\n'
