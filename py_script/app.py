@@ -105,7 +105,7 @@ def get_mac():
             for mactable_item2 in mactable_list:
               if mactable_item2 != []:
                 if mactable_item2[3] == port :
-                  msg1 += 'PORT '+ port+ ': ' + mactable_item2[2]+ ', VLAN: ' + mactable_item2[0]
+                  msg1 += 'PORT '+ port+ ': ' + mactable_item2[2]+ ' VLAN: ' + mactable_item2[0]
                   tn.close()
           return [port, vid, mac, host, msg1]
         tn.close()

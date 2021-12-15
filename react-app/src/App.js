@@ -1,49 +1,9 @@
 import { useState } from 'react';
 import './App.css';
-
-
-
-const Header = () => {
-  return <h2>MAC FINDER</h2>
-}
-
-const Field = (props) => {
-  const {inputMac, setInputMacHandler} = props
-  return (
-    <input
-        placeholder='Введите MAC'
-        type='text'
-        value={inputMac}
-        onChange={e => setInputMacHandler(e.target.value)}/>
-  )
-}
-
-const Btn = (props) => {
-  const text = 'check'
-  return <button onClick={props.getData} className='mac-check_btn'>{text}</button>
-}
-
-
-const OutField = (props) => {
-    const {res} = props
-    if (res !== '. . .') {
-      console.log(res)
-      const elements = res.map(elem => {
-        return <h6>{elem}</h6>
-      })
-      return (
-        <div className='elements'>{elements}</div>
-      )
-    }
-    return <p>{res}</p>
-
-
-
-    
-
-}
-
-
+import { Header } from './components/Header/Header';
+import { MackInputField } from './components/MackInputField/MackInputField';
+import OutField from './components/OutField/OutField';
+import Btn from './components/Btn/Btn';
 
 function App() {
 
@@ -60,9 +20,7 @@ function App() {
     try {
       const response = await fetch('http://192.168.50.22:8080?n='+inputMac);
       const json = await response.json();
-      console.log(json)
       const x = json.split(/\n(?!\n)/)
-      console.log(typeof(res))
       setRes(x)
       
     } catch(err) {
@@ -70,15 +28,13 @@ function App() {
   }
 }
 
-  
-
   return (
     <div className="App">
       <header className="App-header">
         <Header/>
-        <Field inputMac={inputMac} setInputMacHandler={setInputMacHandler}/>
+        <MackInputField inputMac={inputMac} setInputMacHandler={setInputMacHandler}/>
         <Btn getData={getData}/>
-        <OutField res={res} />
+        <OutField res={res} inputMac={inputMac}/>
       </header>
     </div>
   );
