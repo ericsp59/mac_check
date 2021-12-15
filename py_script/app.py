@@ -173,7 +173,7 @@ def get_mac():
         on_zyxel31 = find_port_by_mac_zyxel('192.168.254.31', target_mac, ['27'])
         if on_zyxel31[0] == '27':
           msg2 += 'Check 254.32...\n'
-          on_zyxel32 = find_port_by_mac_zyxel('192.168.254.32', target_mac, ['27'])
+          on_zyxel32 = find_port_by_mac_zyxel('192.168.254.32', target_mac, ['27','8'])
           if on_zyxel32[0] == '27':
             msg2 += 'Check 254.33...\n'
             on_zyxel33 = find_port_by_mac_zyxel('192.168.254.33', target_mac, ['27'])
