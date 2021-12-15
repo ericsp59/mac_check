@@ -59,7 +59,7 @@ def get_mac():
             msg1 += 'Switch: https://'+host+'\n'
             for mactable_item2 in mactable_list:
               if mactable_item2[0] == port:
-                msg1 += 'PORT '+port+', MAC: '+mactable_item2[2]+', VLAN: '+mactable_item2[1]+'\n'
+                msg1 += 'PORT '+port+', MAC: '+mactable_item2[2]+' VLAN: '+mactable_item2[1]+'\n'
                 tn.close()
 
           return [port, vid, mac, host, msg1]
