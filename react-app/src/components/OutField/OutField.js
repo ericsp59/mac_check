@@ -7,7 +7,7 @@ const OutField = (props) => {
 
     const elements = res.map((elem, key) => {
       if (inputMac.length >= 10) 
-      if (elem.replaceAll(':', '').replaceAll('-', '').indexOf(inputMac.trim().toLowerCase().replaceAll(':', '').replaceAll('-', ''))+1 ) 
+      if (elem.replaceAll(':', '').replaceAll('-', '').indexOf(inputMac.toLowerCase().trim().replaceAll(':', '').replaceAll('-', ''))+1 ) 
         return <h6 key={key} className='target'>{elem}</h6>
       return <h6 key={key}>{elem}</h6>
     })
