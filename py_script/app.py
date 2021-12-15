@@ -134,7 +134,8 @@ def get_mac():
 
       if on_zyxel200[0] == '2':
         msg += on_zyxel200[2]+ '\n Web Interface Only --> http://192.168.254.6'
-        result = msg+on_zyxel200[2]
+        result = msg
+        # +on_zyxel200[2]
       
       if on_zyxel200[0] == '3':
         msg += on_zyxel200[2]+ '\n Web Interface Only --> http://192.168.254.7'

@@ -5,7 +5,7 @@ import { MackInputField } from './components/MackInputField/MackInputField';
 import OutField from './components/OutField/OutField';
 import Btn from './components/Btn/Btn';
 import { Spinner } from './components/Spinner/Spinner';
-
+// f48cebf9b043
 function App() {
 
   function setInputMacHandler(val) {
