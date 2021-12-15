@@ -3,7 +3,7 @@ import './OutField.css'
 const OutField = (props) => {
   const {res, inputMac} = props
   if (res !== '. . .') {
-    console.log(res)
+    // console.log(res)
 
     const elements = res.map((elem, key) => {
       if (inputMac.length >= 10) 

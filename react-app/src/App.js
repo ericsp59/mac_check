@@ -21,7 +21,8 @@ function App() {
   // e.preventDefault();
   console.log('getting data...')
     try {
-      const response = await fetch('http://192.168.50.22:8080?n='+inputMac);
+      // const response = await fetch('http://192.168.50.22:8080?n='+inputMac);
+      const response = await fetch('https://mac-scr.cirpk.permkrai.ru?n='+inputMac);
       const json = await response.json();
       const x = json.split(/\n(?!\n)/)
       setRes(x)
