@@ -130,7 +130,7 @@ def get_mac():
       
       if on_zyxel200[0] == '1':
         msg += on_zyxel200[2] + '\n Web Interface Only --> http://192.168.254.5'
-        result =  msg+on_zyxel200[2]
+        result =  msg
 
       if on_zyxel200[0] == '2':
         msg += on_zyxel200[2]+ '\n Web Interface Only --> http://192.168.254.6'
@@ -139,7 +139,7 @@ def get_mac():
       
       if on_zyxel200[0] == '3':
         msg += on_zyxel200[2]+ '\n Web Interface Only --> http://192.168.254.7'
-        result =  msg+on_zyxel200[2]
+        result =  msg
 
       if on_zyxel200[0] == '4':
         on_dlink21 = find_port_by_mac_dlink('192.168.254.21', target_mac, [])
@@ -148,7 +148,7 @@ def get_mac():
       
       if on_zyxel200[0] == '5':
         msg += on_zyxel200[2]+ '\n Web Interface Only --> http://192.168.254.22/'
-        result = msg+on_zyxel200[2]
+        result = msg
 
       ##################################################
       
@@ -180,10 +180,14 @@ def get_mac():
             if on_zyxel33[0] == '27':
               msg2 += 'Check 254.34...\n'
               on_zyxel34 = find_port_by_mac_zyxel('192.168.254.34', target_mac, ['27'])
-              result = msg+msg2+on_zyxel34[4]
+              if on_zyxel34[0] == '27':
+                msg2 += 'Check 254.35...\n'
+                on_zyxel35 = find_port_by_mac_zyxel('192.168.254.35', target_mac, ['27'])
+                result = msg+msg2+on_zyxel35[4]
+              else: result = msg + msg2+on_zyxel34[4]
             else: result = msg + msg2+on_zyxel33[4]  
-          else: result = msg+msg2+on_zyxel32[4]
-        else: result = msg+msg2+on_zyxel31[4]  
+          else: result = msg + msg2+on_zyxel32[4]
+        else: result = msg + msg2+on_zyxel31[4]  
             
       
       if on_zyxel200[0] == '30':
