@@ -1,3 +1,5 @@
+import './MackInputField.css'
+
 const MackInputField = (props) => {
   const {inputMac, setInputMacHandler} = props
   return (

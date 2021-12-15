@@ -1,3 +1,5 @@
+import './Btn.css'
+
 const Btn = (props) => {
   const text = 'check'
   return <button onClick={props.getData} className='mac-check_btn'>{text}</button>
